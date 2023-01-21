@@ -1,5 +1,9 @@
-import { Play } from 'phosphor-react'
-import { useState } from 'react'
+import { Play } from "phosphor-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from '@hookform/resolvers/zod'
+
+import * as zod from "zod";
+
 import {
   CountdownContainer,
   FormContainer,
@@ -8,27 +12,34 @@ import {
   Separator,
   StartCountButton,
   TaskInput,
-} from './styles'
+} from "./styles";
+
+const newFormValidationSchema = zod.object({
+  task: zod.string().min(1, "Inicie com uma Tarefa Mínimo"),
+  minutesAmount: zod.number().min(5).max(60),
+});
 
 export function Home() {
+  const { register, handleSubmit, watch } = useForm({
+    resolver: zodResolver(newFormValidationSchema),
+  });
 
-  const [task, setTask] = useState('')
-
-  function resetForm() {
-    setTask('')
+  function handleCreateNewCycle(data: any) {
   }
+
+  const task = watch("task");
+  const isFormSubmitDisabled = !task;
 
   return (
     <HomeContainer>
-      <form action="">
+      <form onSubmit={handleSubmit(handleCreateNewCycle)} action="">
         <FormContainer>
           <label htmlFor="task">Vou trabalhar em</label>
           <TaskInput
             id="task"
             list="task-suggestion"
             placeholder="Dê um nome para o seu projeto"
-            onChange={(e) => setTask(e.target.value)}
-            value={task}
+            {...register("task")}
           />
 
           <datalist id="task-suggestion">
@@ -41,11 +52,12 @@ export function Home() {
           <label htmlFor="minutesAmaunt">durante</label>
           <MinuteAmountInput
             type="number"
-            id="minutesAmaunt"
+            id="minutesAmount"
             placeholder="00"
             step={5}
             min={5}
             max={60}
+            {...register("minutesAmount", { valueAsNumber: true })}
           />
           <span>minutos.</span>
         </FormContainer>
@@ -58,11 +70,11 @@ export function Home() {
           <span>0</span>
         </CountdownContainer>
 
-        <StartCountButton disabled={!task} type="submit">
+        <StartCountButton disabled={isFormSubmitDisabled} type="submit">
           <Play />
           Começar
         </StartCountButton>
       </form>
     </HomeContainer>
-  )
+  );
 }
