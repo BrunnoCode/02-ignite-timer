@@ -15,9 +15,6 @@ export const HomeContainer = styled.main`
   }
 `
 
-
-
-
 export const BaseCountButton = styled.button`
   width: 100%;
   border: 0;
@@ -38,9 +35,6 @@ export const BaseCountButton = styled.button`
     cursor: not-allowed;
   }
 `
-
-
-
 
 export const StartCountButton = styled(BaseCountButton)`
   background: ${(props) => props.theme['green-500']};
