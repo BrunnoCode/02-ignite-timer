@@ -10,6 +10,50 @@ export const FormContainer = styled.div`
   font-size: 1.125rem;
   font-weight: bold;
   flex-wrap: wrap;
+
+  .task-field,
+  .duration-field {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .task-field {
+    flex: 1;
+    min-width: 18rem;
+  }
+
+  .mobile-copy {
+    display: none;
+  }
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+
+    .task-field {
+      min-width: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.375rem;
+    }
+
+    .duration-field {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.375rem;
+    }
+
+    .desktop-copy,
+    .duration-suffix {
+      display: none;
+    }
+
+    .mobile-copy {
+      display: inline;
+    }
+  }
 `
 const baseInput = styled.input`
   background: transparent;
@@ -32,6 +76,7 @@ const baseInput = styled.input`
 `
 export const TaskInput = styled(baseInput)`
   flex: 1;
+  min-width: 0;
 
   &::-webkit-calendar-picker-indicator {
     display: none !important;
@@ -40,4 +85,8 @@ export const TaskInput = styled(baseInput)`
 
 export const MinuteAmountInput = styled(baseInput)`
   width: 4rem;
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 `

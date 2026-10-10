@@ -8,10 +8,24 @@ export const HomeContainer = styled.main`
   justify-content: center;
 
   form {
+    width: 100%;
+    max-width: 52rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 3.5rem;
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    form {
+      gap: 3rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    form {
+      gap: 2.5rem;
+    }
   }
 `
 
@@ -33,6 +47,10 @@ export const BaseCountButton = styled.button`
   &:disabled {
     opacity: 0.7;
     cursor: not-allowed;
+  }
+
+  @media (max-width: 767px) {
+    min-height: 3.5rem;
   }
 `
 

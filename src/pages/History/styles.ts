@@ -10,6 +10,18 @@ export const HistoryContainer = styled.main`
     font-size: 1.5rem;
     color: ${(props) => props.theme['gray-100']};
   }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    padding: 3rem 1rem;
+  }
+
+  @media (max-width: 767px) {
+    padding: 2.5rem 0 0;
+
+    h1 {
+      font-size: 1.25rem;
+    }
+  }
 `
 
 export const HistoryList = styled.div`
@@ -55,6 +67,54 @@ export const HistoryList = styled.div`
         padding-left: 1.5rem;
       }
     }
+  }
+
+  @media (max-width: 767px) {
+    margin-top: 1.5rem;
+    overflow: visible;
+
+    table {
+      display: none;
+    }
+  }
+`
+
+export const MobileHistoryList = styled.dl`
+  display: none;
+
+  @media (max-width: 767px) {
+    display: grid;
+    gap: 1rem;
+  }
+`
+
+export const HistoryCard = styled.div`
+  display: grid;
+  gap: 0.875rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background: ${(props) => props.theme['gray-700']};
+
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  dt {
+    color: ${(props) => props.theme['gray-400']};
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  dd {
+    color: ${(props) => props.theme['gray-100']};
+    font-size: 0.875rem;
+    margin: 0;
+    text-align: right;
+    overflow-wrap: anywhere;
   }
 `
 

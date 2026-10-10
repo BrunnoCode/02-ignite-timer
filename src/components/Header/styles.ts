@@ -29,4 +29,20 @@ export const HeaderContainer = styled.header`
       color: ${(props) => props.theme['green-500']};
     }
   }
+
+  @media (max-width: 767px) {
+    img {
+      width: 2.25rem;
+      height: 2.25rem;
+    }
+
+    nav {
+      gap: 0.25rem;
+    }
+
+    a {
+      width: 2.75rem;
+      height: 2.75rem;
+    }
+  }
 `

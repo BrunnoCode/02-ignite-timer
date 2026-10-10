@@ -9,14 +9,19 @@ export function NewCycleForm() {
 
   return (
     <FormContainer>
-      <label htmlFor="task">Vou trabalhar em</label>
-      <TaskInput
-        id="task"
-        list="task-suggestion"
-        placeholder="Dê um nome para o seu projeto"
-        disabled={!!activeCycle}
-        {...register('task')}
-      />
+      <div className="task-field">
+        <label htmlFor="task">
+          <span className="desktop-copy">Vou trabalhar em</span>
+          <span className="mobile-copy">Tarefa</span>
+        </label>
+        <TaskInput
+          id="task"
+          list="task-suggestion"
+          placeholder="Dê um nome para o seu projeto"
+          disabled={!!activeCycle}
+          {...register('task')}
+        />
+      </div>
 
       <datalist id="task-suggestion">
         <option value="ReactJs" />
@@ -25,18 +30,23 @@ export function NewCycleForm() {
         <option value="Npm" />
       </datalist>
 
-      <label htmlFor="minutesAmaunt">durante</label>
-      <MinuteAmountInput
-        type="number"
-        id="minutesAmount"
-        placeholder="00"
-        disabled={!!activeCycle}
-        step={5}
-        min={1}
-        max={60}
-        {...register('minutesAmount', { valueAsNumber: true })}
-      />
-      <span>minutos.</span>
+      <div className="duration-field">
+        <label htmlFor="minutesAmount">
+          <span className="desktop-copy">durante</span>
+          <span className="mobile-copy">Duração (minutos)</span>
+        </label>
+        <MinuteAmountInput
+          type="number"
+          id="minutesAmount"
+          placeholder="00"
+          disabled={!!activeCycle}
+          step={5}
+          min={1}
+          max={60}
+          {...register('minutesAmount', { valueAsNumber: true })}
+        />
+        <span className="duration-suffix">minutos.</span>
+      </div>
     </FormContainer>
   )
 }
